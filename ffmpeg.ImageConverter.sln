@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{71EC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleEnvironment", "ConsoleEnvironment\ConsoleEnvironment.csproj", "{9A783B7E-395B-4C59-A703-95F61B4FCA22}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleHexRandom", "ConsoleHexRandom\ConsoleHexRandom.csproj", "{5DF8D8F8-4221-4014-8FAA-0CA021B59D23}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +25,17 @@ Global
 		{9A783B7E-395B-4C59-A703-95F61B4FCA22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A783B7E-395B-4C59-A703-95F61B4FCA22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A783B7E-395B-4C59-A703-95F61B4FCA22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DF8D8F8-4221-4014-8FAA-0CA021B59D23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DF8D8F8-4221-4014-8FAA-0CA021B59D23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DF8D8F8-4221-4014-8FAA-0CA021B59D23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DF8D8F8-4221-4014-8FAA-0CA021B59D23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9A783B7E-395B-4C59-A703-95F61B4FCA22} = {71EC396B-7680-41C0-AB6B-C71459D17E8D}
+		{5DF8D8F8-4221-4014-8FAA-0CA021B59D23} = {71EC396B-7680-41C0-AB6B-C71459D17E8D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B7D6F2C3-9B5E-4D6C-9AC4-735DCA9F557B}

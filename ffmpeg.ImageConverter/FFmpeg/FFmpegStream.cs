@@ -23,6 +23,10 @@ namespace ffmpeg.ImageConverter.FFmpeg
 
             }
         }
+        public void Resize(ImgSize imgSize)
+        {
+
+        }
         private bool __valid(string path_exe)
         {
             return string.IsNullOrEmpty(path_exe) && File.Exists(path_exe);
