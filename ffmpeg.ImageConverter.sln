@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ffmpeg.ImageConverter", "ffmpeg.ImageConverter\ffmpeg.ImageConverter.csproj", "{FF8C4576-7318-494C-A813-0601D5415225}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ffmpeg.ImageConverter", "ffmpeg.ImageConverter\ffmpeg.ImageConverter.csproj", "{FF8C4576-7318-494C-A813-0601D5415225}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{71EC396B-7680-41C0-AB6B-C71459D17E8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleEnvironment", "ConsoleEnvironment\ConsoleEnvironment.csproj", "{9A783B7E-395B-4C59-A703-95F61B4FCA22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleEnvironment", "ConsoleEnvironment\ConsoleEnvironment.csproj", "{9A783B7E-395B-4C59-A703-95F61B4FCA22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleHexRandom", "ConsoleHexRandom\ConsoleHexRandom.csproj", "{5DF8D8F8-4221-4014-8FAA-0CA021B59D23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleHexRandom", "ConsoleHexRandom\ConsoleHexRandom.csproj", "{5DF8D8F8-4221-4014-8FAA-0CA021B59D23}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleRead8Byte", "ConsoleRead8Byte\ConsoleRead8Byte.csproj", "{A0E173D5-23DD-479B-977E-9FEEB345036E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleFFmpegStream", "ConsoleFFmpegStream\ConsoleFFmpegStream.csproj", "{3DC5FF38-27A6-4FE2-A3E4-A008E5339162}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +33,14 @@ Global
 		{5DF8D8F8-4221-4014-8FAA-0CA021B59D23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DF8D8F8-4221-4014-8FAA-0CA021B59D23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DF8D8F8-4221-4014-8FAA-0CA021B59D23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0E173D5-23DD-479B-977E-9FEEB345036E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0E173D5-23DD-479B-977E-9FEEB345036E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0E173D5-23DD-479B-977E-9FEEB345036E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0E173D5-23DD-479B-977E-9FEEB345036E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DC5FF38-27A6-4FE2-A3E4-A008E5339162}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DC5FF38-27A6-4FE2-A3E4-A008E5339162}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DC5FF38-27A6-4FE2-A3E4-A008E5339162}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DC5FF38-27A6-4FE2-A3E4-A008E5339162}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,6 +48,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{9A783B7E-395B-4C59-A703-95F61B4FCA22} = {71EC396B-7680-41C0-AB6B-C71459D17E8D}
 		{5DF8D8F8-4221-4014-8FAA-0CA021B59D23} = {71EC396B-7680-41C0-AB6B-C71459D17E8D}
+		{A0E173D5-23DD-479B-977E-9FEEB345036E} = {71EC396B-7680-41C0-AB6B-C71459D17E8D}
+		{3DC5FF38-27A6-4FE2-A3E4-A008E5339162} = {71EC396B-7680-41C0-AB6B-C71459D17E8D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B7D6F2C3-9B5E-4D6C-9AC4-735DCA9F557B}
