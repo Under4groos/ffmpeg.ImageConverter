@@ -10,7 +10,7 @@ namespace ffmpeg.ImageConverter.FFmpeg
 
         public FFmpegStream(string path_exe)
         {
-            if (__valid(path_exe))
+            if (_valid(path_exe))
             {
                 __path_ffmpeg = path_exe;
             }
@@ -19,32 +19,56 @@ namespace ffmpeg.ImageConverter.FFmpeg
         {
             string ffmpeg = PathEnvironment.GetEnvironmentVariableFind("ffmpeg");
             ffmpeg = Path.Combine(ffmpeg, "ffmpeg.exe");
-            if (__valid(ffmpeg))
+            if (_valid(ffmpeg))
             {
                 __path_ffmpeg = ffmpeg;
 
 
             }
         }
+        /// ffmpeg -i input.jpg -vf scale=320:240 output_320x240.png
         public bool Resize(string path, string out_path, SResize imgSize)
         {
-            if (File.Exists(out_path))
-                File.Delete(out_path);
-            if (!__valid(__path_ffmpeg))
-                return false;
 
-            /// ffmpeg -i input.jpg -vf scale=320:240 output_320x240.png
+            if (!_valid(__path_ffmpeg))
+                return false;
+            _valid_remove(out_path);
+
+
 
             string command = $"-i \"{path}\" -vf scale={imgSize.Width}:{imgSize.Height} \"{out_path}\"";
-            return _RunFFmpeg(command);
+            return _run_ffmpeg(command);
 
         }
-        private bool __valid(string path_exe)
+        /// ffmpeg -i input.png -preset ultrafast output.jpg
+        public bool FormatImage(string path, string out_path)
+        {
+
+            if (!_valid(__path_ffmpeg))
+                return false;
+            _valid_remove(out_path);
+
+            string command = $"-i \"{path}\" -preset  ultrafast \"{out_path}\"";
+            return _run_ffmpeg(command);
+
+        }
+
+
+        private void _valid_remove(string path)
+        {
+            if (File.Exists(path))
+                File.Delete(path);
+        }
+        private bool _valid(string path_exe)
         {
             return !string.IsNullOrEmpty(path_exe) && File.Exists(path_exe);
         }
-
-        private bool _RunFFmpeg(string command)
+        /// <summary>
+        /// Startup ffmpeg 
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        private bool _run_ffmpeg(string command)
         {
             ProcessStartInfo procStartInfo = new ProcessStartInfo(__path_ffmpeg, command);
             Process proc = new Process();
@@ -75,6 +99,8 @@ namespace ffmpeg.ImageConverter.FFmpeg
 
         public void Dispose()
         {
+
+            GC.SuppressFinalize(this);
 
         }
     }
