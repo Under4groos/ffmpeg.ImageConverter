@@ -28,6 +28,14 @@ namespace ffmpeg.ImageConverter.FFmpeg
 
 
             }
+            else
+            {
+                ffmpeg = Path.Combine("Bin", "ffmpeg.exe");
+                if (_valid(ffmpeg))
+                {
+                    PathFFmpeg = ffmpeg;
+                }
+            }
         }
         /// ffmpeg -i input.jpg -vf scale=320:240 output_320x240.png
         public bool Resize(string path, string out_path, SResize imgSize)
