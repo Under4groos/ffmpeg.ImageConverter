@@ -6,13 +6,16 @@ namespace ffmpeg.ImageConverter.FFmpeg
 {
     public class FFmpegStream : IDisposable
     {
-        private string __path_ffmpeg = string.Empty;
+        public string PathFFmpeg
+        {
+            get; private set;
+        }
 
         public FFmpegStream(string path_exe)
         {
             if (_valid(path_exe))
             {
-                __path_ffmpeg = path_exe;
+                PathFFmpeg = path_exe;
             }
         }
         public FFmpegStream()
@@ -21,7 +24,7 @@ namespace ffmpeg.ImageConverter.FFmpeg
             ffmpeg = Path.Combine(ffmpeg, "ffmpeg.exe");
             if (_valid(ffmpeg))
             {
-                __path_ffmpeg = ffmpeg;
+                PathFFmpeg = ffmpeg;
 
 
             }
@@ -30,7 +33,7 @@ namespace ffmpeg.ImageConverter.FFmpeg
         public bool Resize(string path, string out_path, SResize imgSize)
         {
 
-            if (!_valid(__path_ffmpeg))
+            if (!_valid(PathFFmpeg))
                 return false;
             _valid_remove(out_path);
 
@@ -41,23 +44,47 @@ namespace ffmpeg.ImageConverter.FFmpeg
 
         }
         /// ffmpeg -i input.png -preset ultrafast output.jpg
-        public bool FormatImage(string path, string out_path)
+        public bool FormatImage(string path, string out_path, Action<string> dataReceivedEventHandler)
         {
 
-            if (!_valid(__path_ffmpeg))
+            if (!_valid(PathFFmpeg))
                 return false;
             _valid_remove(out_path);
 
             string command = $"-i \"{path}\" -preset  ultrafast \"{out_path}\"";
-            return _run_ffmpeg(command);
+            return _run_ffmpeg(command, dataReceivedEventHandler);
+
+        }
+
+        public string GetMetadata(string path)
+        {
+            if (!_valid(PathFFmpeg) || !File.Exists(path))
+                return string.Empty;
+            string metadata = "";
+            //_run_ffmpeg($"-i \"{path}\"", (o, e) =>
+            //{
+            //    metadata += e.Data;
+            //});
+
+            //foreach (var item in metadata.Split('\n'))
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            return metadata;
 
         }
 
 
-        private void _valid_remove(string path)
+        public void _valid_remove(string path)
         {
             if (File.Exists(path))
                 File.Delete(path);
+        }
+
+        public bool ValidFFMPEG()
+        {
+            return _valid(PathFFmpeg);
         }
         private bool _valid(string path_exe)
         {
@@ -68,27 +95,31 @@ namespace ffmpeg.ImageConverter.FFmpeg
         /// </summary>
         /// <param name="command"></param>
         /// <returns></returns>
-        private bool _run_ffmpeg(string command)
+        public bool _run_ffmpeg(string command, Action<string> dataReceivedEventHandler = null)
         {
-            ProcessStartInfo procStartInfo = new ProcessStartInfo(__path_ffmpeg, command);
+            ProcessStartInfo procStartInfo = new ProcessStartInfo(PathFFmpeg, command)
+            {
+                RedirectStandardOutput = true,
+                RedirectStandardInput = true,
+                UseShellExecute = false,
+            };
             Process proc = new Process();
             proc.StartInfo = procStartInfo;
-            procStartInfo.RedirectStandardOutput = true;
-            procStartInfo.UseShellExecute = false;
-            proc.OutputDataReceived += (o, e) =>
-            {
-
-            };
+            proc.OutputDataReceived += (o, e) => dataReceivedEventHandler?.Invoke(e.Data);
 
             try
             {
                 proc.Start();
                 proc.BeginOutputReadLine();
+
                 proc.WaitForExit();
+
+
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Debug.WriteLine(e.Message);
                 return false;
             }
 
